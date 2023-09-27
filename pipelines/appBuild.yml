@@ -40,6 +40,18 @@ steps:
 #    effectivePomSkip: false
 #    sonarQubeRunAnalysis: false
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'bogaSonarCloud'
+    organization: 'boga'
+    scannerMode: 'Other'
+    extraProperties: |
+      #sonar.exclusions=**/*.bin
+      sonar.projectVersion=1.0.0.0
+      sonar.projectName=javaPetClinicApp
+      #sonar.sources=src/java/main
+      sonar.language=java
+      sonar.sourceEncoding=UTF-8
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
@@ -53,3 +65,7 @@ steps:
     sonarQubeRunAnalysis: true
     isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'latest'
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '120'
