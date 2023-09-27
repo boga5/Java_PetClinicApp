@@ -54,7 +54,7 @@ steps:
       sonar.sourceEncoding=UTF-8
 - task: Maven@4
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'code/pom.xml'
     goals: 'clean package'
     options: '-e'
     publishJUnitResults: true
