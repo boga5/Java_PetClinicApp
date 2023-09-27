@@ -15,6 +15,7 @@ steps:
 - script: | 
           mvn -version
           echo $JAVA_HOME
+          java -version
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
