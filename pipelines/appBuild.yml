@@ -12,6 +12,9 @@ pool:
 
 steps:
 
+- script: | 
+          mvn -version
+          echo $JAVA_HOME
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
