@@ -48,7 +48,7 @@ steps:
     extraProperties: |
       #sonar.exclusions=**/*.bin
       sonar.projectVersion=1.0.0.0
-      sonar.projectName=javaPetClinicApp
+      sonar.projectName=Java_PetClinicApp
       #sonar.sources=src/java/main
       sonar.language=java
       sonar.sourceEncoding=UTF-8
@@ -62,13 +62,13 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+    sonarQubeRunAnalysis: true
     isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'latest'
 
-- task: SonarCloudAnalyze@1
-  inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
+#- task: SonarCloudAnalyze@1
+#  inputs:
+#    jdkversion: 'JAVA_HOME_17_X64'
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '120'
