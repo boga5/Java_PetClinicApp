@@ -13,45 +13,43 @@ pool:
 steps:
 
 - task: JavaToolInstaller@0
+  name: java17InstallTask
   inputs:
     versionSpec: '17'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- script: | 
-          mvn -version
-          echo $JAVA_HOME
-          java -version
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'code/pom.xml'
-    options: '-e'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx512m'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-    
+# checking the java version
+#- script: | 
+#          mvn -version
+#          echo $JAVA_HOME
+#          java -version
+#  name: versionCheck
+
+# mvn package command
 #- task: Maven@4
+#  name: mvntask
 #  inputs:
 #    mavenPomFile: 'code/pom.xml'
+#    options: '-e'
 #    publishJUnitResults: false
 #    javaHomeOption: 'JDKVersion'
 #    mavenVersionOption: 'Default'
+#    mavenOptions: '-Xmx512m'
 #    mavenAuthenticateFeed: false
 #    effectivePomSkip: false
 #    sonarQubeRunAnalysis: false
 
-#Code by Maven template in Azure Pipelines
-#- task: Maven@3
-#  inputs:
-#    mavenPomFile: 'code/pom.xml'
-#    mavenOptions: '-Xmx3072m'
-#    javaHomeOption: 'JDKVersion'
-#    jdkVersionOption: '1.8'
-#    jdkArchitectureOption: 'x64'
-#    publishJUnitResults: true
-#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#    goals: 'package'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'code/pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    codeCoverageToolOption: 'JaCoCo'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    isJacocoCoverageReportXML: true
+    sqMavenPluginVersionChoice: 'latest'
