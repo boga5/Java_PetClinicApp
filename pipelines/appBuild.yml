@@ -62,10 +62,13 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: true
+    sonarQubeRunAnalysis: false
     isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'latest'
 
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '120'
