@@ -11,15 +11,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
+    options: '-e'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx512m'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+    
+#- task: Maven@4
+#  inputs:
+#    mavenPomFile: 'code/pom.xml'
+#    publishJUnitResults: false
+#    javaHomeOption: 'JDKVersion'
+#    mavenVersionOption: 'Default'
+#    mavenAuthenticateFeed: false
+#    effectivePomSkip: false
+#    sonarQubeRunAnalysis: false
 
 #Code by Maven template in Azure Pipelines
 #- task: Maven@3
