@@ -54,7 +54,9 @@ steps:
       sonar.sourceEncoding=UTF-8
 - task: Maven@4
   inputs:
-    mavenPomFile: 'code/pom.xml'
+    mavenPomFile: 'pom.xml'
+    goals: 'clean package'
+    options: '-e'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
@@ -64,7 +66,7 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     isJacocoCoverageReportXML: true
-    sqMavenPluginVersionChoice: 'latest'
+    sqMavenPluginVersionChoice: 'pom'
 
 #- task: SonarCloudAnalyze@1
 #  inputs:
