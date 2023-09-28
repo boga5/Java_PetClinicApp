@@ -81,6 +81,9 @@
         <docker.jib-maven-plugin.version>3.3.1</docker.jib-maven-plugin.version>
         <docker.image.prefix>springcommunity</docker.image.prefix>
 
+        <sonar.organization>boga</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
 
     <dependencyManagement>
