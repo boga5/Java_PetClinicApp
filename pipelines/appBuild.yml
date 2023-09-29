@@ -52,7 +52,8 @@ steps:
       #sonar.sources=src/java/main
       sonar.language=java
       sonar.sourceEncoding=UTF-8
-      SONAR_TOKEN=b806b3aa38836c3f74b6aaeb9cad6b5e1558b8e4
+      SONAR_TOKEN=$(sonar_token)
+      sonar.token=$(sonar_token)
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
