@@ -49,11 +49,11 @@ steps:
       #sonar.exclusions=**/*.bin
       sonar.projectVersion=1.0.0.0
       sonar.projectName=Java_PetClinicApp
+      sonar.projectKey=boga_java-petclinicapp
       #sonar.sources=src/java/main
       sonar.language=java
       sonar.sourceEncoding=UTF-8
-      SONAR_TOKEN=$(sonar_token)
-      sonar.token=$(sonar_token)
+
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
