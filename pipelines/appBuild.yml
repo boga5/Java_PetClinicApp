@@ -26,39 +26,20 @@ steps:
 #          java -version
 #  name: versionCheck
 
-# mvn package command
-#- task: Maven@4
-#  name: mvntask
-#  inputs:
-#    mavenPomFile: 'code/pom.xml'
-#    options: '-e'
-#    publishJUnitResults: false
-#    javaHomeOption: 'JDKVersion'
-#    mavenVersionOption: 'Default'
-#    mavenOptions: '-Xmx512m'
-#    mavenAuthenticateFeed: false
-#    effectivePomSkip: false
-#    sonarQubeRunAnalysis: false
-
-- task: SonarCloudPrepare@1
+- task: SonarQubePrepare@5
   inputs:
-    SonarCloud: 'bogaSonarCloud'
-    organization: 'boga'
+    SonarQube: 'SonarQube_boga-vm'
     scannerMode: 'Other'
     extraProperties: |
-      #sonar.exclusions=**/*.bin
-      sonar.projectVersion=1.0.0.0
-      sonar.projectName=Java_PetClinicApp
-      sonar.projectKey=boga_java-petclinicapp
-      #sonar.sources=src/java/main
-      sonar.language=java
-      sonar.sourceEncoding=UTF-8
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.projectKey=Java_PetClinicApp
 
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
     goals: 'clean package'
-    options: '-e'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
@@ -68,11 +49,8 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     isJacocoCoverageReportXML: true
-    sqMavenPluginVersionChoice: 'pom'
+    sqMavenPluginVersionChoice: 'latest'
 
-- task: SonarCloudAnalyze@1
+- task: SonarQubePublish@5
   inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '120'
+    pollingTimeoutSec: '300'
