@@ -26,16 +26,30 @@ steps:
 #          java -version
 #  name: versionCheck
 
+#- task: SonarQubePrepare@5
+#  inputs:
+#    SonarQube: 'SonarQube_boga-vm'
+#    scannerMode: 'Other'
+#    extraProperties: |
+#      # Additional properties that will be passed to the scanner, 
+#      # Put one key=value per line, example:
+#      # sonar.exclusions=**/*.bin
+#      sonar.projectKey=Java_PetClinicApp
+
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'SonarQube_boga-vm'
-    scannerMode: 'Other'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'Java_PetClinicApp'
+    cliProjectName: 'Java_PetClinicApp'
+    cliSources: '.'
     extraProperties: |
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.projectKey=Java_PetClinicApp
-
+      #sonar.projectKey=Java_PetClinicApp
+      
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
