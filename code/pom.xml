@@ -81,8 +81,7 @@
         <docker.jib-maven-plugin.version>3.3.1</docker.jib-maven-plugin.version>
         <docker.image.prefix>springcommunity</docker.image.prefix>
 
-        <sonar.organization>boga</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        
 
     </properties>
 
@@ -328,6 +327,14 @@
             <artifactId>jakarta.activation-api</artifactId>
             <version>${jakarta-activation.version}</version>
         </dependency>
+            <!-- SonarQube Dependencies-->
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <!-- https://blog.knoldus.com/integrate-maven-project-sonarqube/-->
+            <dependency>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.2</version>
+            </dependency>
 
     </dependencies>
 
@@ -600,6 +607,20 @@
                 </plugins>
             </build>
         </profile>
+
+        <profiles>
+            <profile>
+                <id>sonar</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                    <sonar.host.url>
+                        http://0.0.0.0:9000
+                    </sonar.host.url>
+                </properties>
+            </profile>
    </profiles>
 
 </project>
