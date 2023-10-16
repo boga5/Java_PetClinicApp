@@ -608,10 +608,10 @@
             </build>
         </profile>
 
-        <profiles>
-            <profile>
-                <id>sonar</id>
-                <activation>
+        <!-- SonarQube Profile -->
+        <profile>
+            <id>sonar</id>
+            <activation>
                     <activeByDefault>true</activeByDefault>
                 </activation>
                 <properties>
