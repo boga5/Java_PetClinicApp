@@ -12,13 +12,6 @@ pool:
 
 steps:
 
-- task: JavaToolInstaller@0
-  name: java17InstallTask
-  inputs:
-    versionSpec: '17'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-
 # checking the java version
 #- script: | 
 #          mvn -version
@@ -50,20 +43,29 @@ steps:
       # sonar.exclusions=**/*.bin
       #sonar.projectKey=Java_PetClinicApp
 
+- task: JavaToolInstaller@0
+  name: java17InstallTask
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
 - task: Maven@4
   inputs:
-    mavenPomFile: 'code/pom.xml'
+    mavenPomFile: 'pom.xml'
     goals: 'clean install package sonar:sonar'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
+    codeCoverageRestoreOriginalPomXml: true
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    isJacocoCoverageReportXML: false
-    sqMavenPluginVersionChoice: 'latest'
+    isJacocoCoverageReportXML: true
+    sqMavenPluginVersionChoice: 'pom'
 
 - task: SonarQubePublish@5
   inputs:
