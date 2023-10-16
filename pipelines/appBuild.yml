@@ -56,15 +56,12 @@ steps:
     goals: 'clean install package sonar:sonar'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    codeCoverageToolOption: 'JaCoCo'
-    codeCoverageRestoreOriginalPomXml: true
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.17'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'pom'
 
 - task: SonarQubePublish@5
