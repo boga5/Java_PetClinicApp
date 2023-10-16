@@ -327,14 +327,7 @@
             <artifactId>jakarta.activation-api</artifactId>
             <version>${jakarta-activation.version}</version>
         </dependency>
-            <!-- SonarQube Dependencies-->
-        <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
-        <!-- https://blog.knoldus.com/integrate-maven-project-sonarqube/-->
-            <dependency>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.2</version>
-            </dependency>
+            
 
     </dependencies>
 
@@ -473,6 +466,14 @@
                 </configuration>
             </plugin>
 
+            <!-- SonarQube Dependencies-->
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <!-- https://blog.knoldus.com/integrate-maven-project-sonarqube/-->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.8.0</version>
+            </plugin>
         </plugins>
     </build>
 
