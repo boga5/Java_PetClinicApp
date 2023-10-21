@@ -7,14 +7,13 @@ trigger:
 - develop
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
-
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '17'
-    jdkArchitectureOption: 'x86'
+    jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 - task: Maven@4
   inputs:
