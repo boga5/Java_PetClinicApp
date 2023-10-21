@@ -41,3 +41,5 @@ steps:
     appType: 'webApp'
     WebAppName: 'boga-java'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/petClinic.zip'
+    enableCustomDeployment: true
+    DeploymentType: 'zipDeploy'
