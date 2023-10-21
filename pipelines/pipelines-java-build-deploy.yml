@@ -29,8 +29,8 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'code\target\*.war'
-    includeRootFolder: true
+    rootFolderOrFile: '**/petclinic.war'
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/petClinic.zip'
     replaceExistingArchive: true
