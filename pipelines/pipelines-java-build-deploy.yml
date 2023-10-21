@@ -10,6 +10,12 @@ pool:
   vmImage: windows-latest
 
 steps:
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x86'
+    jdkSourceOption: 'PreInstalled'
 - task: Maven@4
   inputs:
     mavenPomFile: 'code/pom.xml'
@@ -21,3 +27,11 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Bijibiji Azure'
+    appType: 'webApp'
+    WebAppName: 'boga-java'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
