@@ -27,10 +27,17 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'code\target\*.war'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/petClinic.zip'
+    replaceExistingArchive: true
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Bijibiji Azure'
     appType: 'webApp'
     WebAppName: 'boga-java'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/petClinic.zip'
