@@ -29,7 +29,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '**/petclinic.war'
+    rootFolderOrFile: 'code/target/*.war'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/petClinic.zip'
